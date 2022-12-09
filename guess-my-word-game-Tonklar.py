@@ -172,7 +172,7 @@ def game_loop(secret_word):
         print(f"Letters available to you: {get_available_letters(guessed_letter)}")
         in_letter = input("Guess a letter: " )
 
-        if len(in_letter) != 1:
+        if len(in_letter) != 1 or in_letter.isalpha() == False:
             print("input ONE LETTER ONLY")
         else:
             if in_letter in guessed_letter:
