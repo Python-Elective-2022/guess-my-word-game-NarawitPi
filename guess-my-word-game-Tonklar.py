@@ -62,7 +62,7 @@ def is_word_guessed(secret_word, letters_guessed):
 
 
     for i in secret_word:
-        if (i in letters_guessed) == False:
+        if i not in letters_guessed:
             return False
     return True
 
@@ -95,9 +95,9 @@ def get_guessed_word(secret_word, letters_guessed):
     """
 
     guess = ""
-    for i in secret_word:
-        if i in letters_guessed:
-            guess += i
+    for letter in secret_word:
+        if letter in letters_guessed:
+            guess += letter
         else:
             guess += "_ "
 
@@ -129,9 +129,9 @@ def get_available_letters(letters_guessed):
 
     rest_word = ""
     available = string.ascii_lowercase
-    for i in available:
-        if (i in letters_guessed) == False:
-            rest_word += i
+    for letter in available:
+        if letter not in letters_guessed:
+            rest_word += letter
     return rest_word
 
 
@@ -186,7 +186,7 @@ def game_loop(secret_word):
                 remaining_guess -= 1
         print(get_guessed_word(secret_word, guessed_letter), end="\n\n")
 
-        if remaining_guess == 0:
+        if remaining_guess < 1:
             print(f"GAME OVER ! out of attempt The word was {secret_word}")
             break
         if is_word_guessed(secret_word, guessed_letter) == True:
